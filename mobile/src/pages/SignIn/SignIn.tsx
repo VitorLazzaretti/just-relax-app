@@ -1,15 +1,33 @@
 import React from "react";
-import { Text } from "react-native";
-import { Container, Button } from './styles';
-import { Resolver, useForm } from 'react-hook-form';
+import {
+  Container,
+  Button,
+  ContainerImage,
+  Title,
+  ContainerLogo,
+  Description,
+  Form,
+  ForgotPassword,
+  View,
+  ButtonText,
+  ButtonDescription,
+  Highlight,
+  Scroll
+} from './styles';
 
-import * as yup from "yup";
+import Logo from "../../components/Logo/Logo";
+import InitialBackground from "../../components/InitialBackground/InitialBackground";
+
 import { ControlledInput } from '../../components/ControlledInput/ControlledInput';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { Resolver, useForm } from 'react-hook-form';
 import { useAuth } from "../../contexts/auth";
 import { useTheme } from "../../contexts/theme";
 import { useNavigation } from "@react-navigation/native";
+
+import * as yup from "yup";
 
 type FormData = {
   email: string;
@@ -17,8 +35,8 @@ type FormData = {
 }
 
 const schema = yup.object({
-  email: yup.string().email("E-mail inválido").required("Informe o e-mail"),
-  password: yup.string().min(6, "A senha deve ter ao menos 6 dígitos").required("Informe a senha"),
+  email: yup.string().email("Invalid Email").required("Email is required"),
+  password: yup.string().min(6, "Password must contain at least 6 characters").required("Password is required"),
 });
 
 const SignIn: React.FC = () => {
@@ -38,32 +56,58 @@ const SignIn: React.FC = () => {
     await signIn();
   }
 
+  const handleNavigation = () => { navigation.navigate("SignUp") };
+
   return (
     <Container>
-      <Text onPress={() => handleToggleTheme()} style={{ margin: 10, fontSize: 24 }}> SignIn </Text>
-      <ControlledInput
-        name="email"
-        control={control}
-        placeholder="E-mail"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        error={errors.email}
-      />
-      <ControlledInput
-        name="password"
-        control={control}
-        placeholder="Senha"
-        secureTextEntry
-        error={errors.password}
-      />
+      <Scroll bounces={false} snapToEnd={false} snapToStart={false}>
+        <ContainerLogo>
+          <Logo />
+        </ContainerLogo>
 
-      <Button
-        onPress={handleSubmit(handleUserLogin)}
-      >
-        <Text> LOGAR </Text>
-      </Button>
+        <Title onPress={() => handleToggleTheme()}> Sign In </Title>
 
-      <Text onPress={() => { navigation.navigate("CreateAccount") }} style={{ margin: 10, fontSize: 24 }}> IR para Cadastrar-se </Text>
+        <Description>Sign in now to access your exercises and saved music.</Description>
+
+        <Form>
+          <ControlledInput
+            name="email"
+            control={control}
+            placeholder="Email Adress"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            error={errors.email}
+          />
+
+          <View>
+            <ControlledInput
+              name="password"
+              control={control}
+              placeholder="Password"
+              secureTextEntry
+              error={errors.password}
+            />
+            <ForgotPassword>Forgot Password?</ForgotPassword>
+          </View>
+        </Form>
+
+        <Button
+          onPress={handleSubmit(handleUserLogin)}
+        >
+          <ButtonText> LOGIN </ButtonText>
+        </Button>
+
+        <ButtonDescription onPress={handleNavigation}>
+          Don't have an account?{"  "}
+          <Highlight>
+            Sign Up
+          </Highlight>
+        </ButtonDescription>
+      </Scroll>
+
+      <ContainerImage>
+        <InitialBackground />
+      </ContainerImage>
     </Container>
   );
 }

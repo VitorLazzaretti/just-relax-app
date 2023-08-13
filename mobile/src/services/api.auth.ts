@@ -16,6 +16,6 @@ export function signIn(): Promise<Response> {
         id: '1',
         password: '123456',
       }
-    }), 2000);
+    }), 100);
   });
 }

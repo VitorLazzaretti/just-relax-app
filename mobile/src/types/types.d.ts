@@ -7,3 +7,12 @@ type User = {
   created_at: Date;
   updated_at: Date;
 }
+
+type MeditationSound = {
+  id: string;
+  title: string;
+  listening: string;
+  image: ImageSourcePropType;
+  duration: number;
+  author?: string;
+}

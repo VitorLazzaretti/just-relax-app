@@ -32,8 +32,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const storedUser = await AsyncStorage.getItem("@user");
       const storedToken = await AsyncStorage.getItem("@token");
 
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
       if (storedUser && storedToken) {
         setUser(JSON.parse(storedUser) as User);
       }

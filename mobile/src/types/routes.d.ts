@@ -1,7 +1,15 @@
+type DefaultParams = {
+  alert?: string;
+  error?: string;
+  success?: string;
+}
+
 export type AppRootParamList = {
-  SignIn: undefined;
-  CreateAccount: undefined;
-  Dashboard: { postId: string };
+  SignIn?: DefaultParams;
+  SignUp?: DefaultParams;
+  Home: DefaultParams & { postId: string };
+  SelectSound?: DefaultParams;
+  PlaySound: DefaultParams & { meditationId: string };
 };
 
 // This registers which makes navigation fully type-safe.

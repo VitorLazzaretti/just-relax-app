@@ -10,10 +10,11 @@ type Props = InputProps & {
 }
 
 import { Error } from './styles';
+import { View } from 'react-native';
 
 export function ControlledInput({ control, name, error, ...rest }: Props) {
   return (
-    <>
+    <View>
       <Controller
         name={name}
         control={control}
@@ -26,10 +27,7 @@ export function ControlledInput({ control, name, error, ...rest }: Props) {
         )}
       />
 
-      {
-        error && <Error>{error.message}</Error>
-      }
-
-    </>
+      {error && <Error>{error.message}</Error>}
+    </View>
   )
 }

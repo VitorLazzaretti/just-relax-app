@@ -6,36 +6,24 @@ interface Props {
 }
 
 export const Container = styled.View`
-  flex-direction: row;
-  padding: 10px;
-  height: 48px;
-  margin-bottom: 8px;
-`;
-
-export const IconContainer = styled.View<Props>`
-  height: 56px;
-  width: 55px;
-  justify-content: center;
-  align-items: center;
-  margin-right: 2px;
-  background-color: #FFFFFF;
-
-  
-  ${({ isFocused }) => isFocused && css`
-    border-bottom-width: 2px;
-    border-bottom-color: #DC1637;   
-  `};
+  padding: 0px 4px;
+  height: 52px;
 `;
 
 
 export const InputText = styled(TextInput) <Props>`
   flex: 1;
-  background-color: #FFFFFF;
-  color: #7A7A80;
-  padding: 0 23px;
+  padding-left: 12px;
+  padding-top: 8px;
+  font-size: 18px;
+  font-family: ${({ theme }) => theme.fontFamilies.description};
+  color: ${({ theme }) => theme.colors.tertiary_text};
+
+  border-bottom-color: ${({ theme }) => theme.colors.secondary_text};    
+  border-bottom-width: 1px;
 
   ${({ isFocused }) => isFocused && css`
-    border-bottom-width: 2px;
-    border-bottom-color: #DC1637;    
+    border-bottom-color: ${({ theme }) => theme.title == 'dark' ? theme.colors.primary : theme.colors.text};    
+    color: ${({ theme }) => theme.title == 'dark' ? theme.colors.primary : theme.colors.text};    
   `};
 `;
