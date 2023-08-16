@@ -20,11 +20,11 @@ import { useNavigation } from '@react-navigation/native';
 import { meditationSounds } from '../../constants/meditationSounds';
 
 const SelectSound: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
   const navigation = useNavigation();
 
-  const handlePlay = (id: string) => {
-    navigation.navigate("PlaySound", { meditationId: id });
+  const handlePlay = (id: number) => {
+    navigation.navigate("PlaySound", { meditationId: id.toString() });
   };
 
   return (
@@ -36,7 +36,7 @@ const SelectSound: React.FC = () => {
               <ImageTitle> Relax Sounds </ImageTitle>
               <ImageDescription> Sometimes the most productive thing you can do is relax. </ImageDescription>
             </View>
-            <ImageButton onPress={() => { toggleTheme() }}>
+            <ImageButton onPress={() => { handlePlay(8) }}>
               <ImageButtonText> play now </ImageButtonText>
               <IconMI name="play-circle-filled" color={theme.colors.black} style={{ marginTop: 2 }} size={18} />
             </ImageButton>

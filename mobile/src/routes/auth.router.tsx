@@ -2,15 +2,15 @@ import React from "react";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 
-import { StackNavigationOptions, createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createStackNavigator } from "@react-navigation/stack";
 import { useTheme } from "../contexts/theme";
 
-const AuthStack = createNativeStackNavigator();
+const AuthStack = createStackNavigator();
 
 const AuthRoutes: React.FC = () => {
   const { theme } = useTheme();
   
-  const headerOptions: StackNavigationOptions = {
+  const headerOptions = {
     headerTitle: '',
     headerShadowVisible: false,
     headerStyle: { backgroundColor: theme.colors.background},

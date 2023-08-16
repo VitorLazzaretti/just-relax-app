@@ -8,6 +8,6 @@ export const Container = styled.ScrollView.attrs({
     justifyContent: 'center',
     gap: 24,
   }})`
-  margin: 24px 0px;
+  margin: 16px 0px;
   flex-direction: row;
 `;

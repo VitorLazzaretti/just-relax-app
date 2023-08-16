@@ -13,7 +13,7 @@ export const Container = styled.ScrollView`
 export const ImageContainer = styled.View`
   width: 100%;
   min-height: 200px;
-  border-radius: 20%;
+  border-radius: 20px;
   overflow: hidden;
 `;
 

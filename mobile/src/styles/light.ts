@@ -1,26 +1,30 @@
 export default {
-  title: 'light',
+  title: "light",
 
   fontFamilies: {
-    title: 'Alegreya_500Medium',
-    description: 'AlegreyaSans_400Regular',
-    text_highlight: 'AlegreyaSans_500Medium',
+    title: "Alegreya_500Medium",
+    description: "AlegreyaSans_400Regular",
+    text_highlight: "AlegreyaSans_500Medium",
   },
   
   colors: {
-    primary: '#61B15A',
-    secondary: '#ADCE74',
+    primary: "#61B15A",
+    secondary: "#ADCE74",
     tertiary: "#FFF76A",
-    error: '#DC1637',
-    background: '#FFFFFF',
-    surface: '#EFF4E3',
-    text: '#040404',
-    secondary_text: '#545454',
-    tertiary_text: '#818586',
-    button_text: '#FFFFFF',
-    description: '#818586',
-    icon: '#FFFFFF',
-    white: '#FFFFFF',
-    black: '#000000'
+    error: "#DC1637",
+    background: "#FFFFFF",
+    surface: "#EFF4E3",
+    text: "#040404",
+    secondary_text: "#545454",
+    tertiary_text: "#818586",
+    button_text: "#FFFFFF",
+    description: "#818586",
+    icon: "#FFFFFF",
+    white: "#FFFFFF",
+    black: "#000000",
+    table_primary: "#61B15A",
+    table_dot: "#FFFFFF",
+    mood: "#b7a943",
+    gratitude: "#397f32"
   }
 }

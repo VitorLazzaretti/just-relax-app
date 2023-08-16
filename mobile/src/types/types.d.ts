@@ -9,10 +9,23 @@ type User = {
 }
 
 type MeditationSound = {
-  id: string;
+  id: number;
   title: string;
   listening: string;
   image: ImageSourcePropType;
   duration: number;
   author?: string;
+}
+
+enum MoodList {
+  Calm = 'Calm',
+  Focus = 'Focus',
+  Relax = 'Relax',
+  Anxious = 'Anxious',
+}
+
+type MoodOption = {
+  id: number;
+  name: keyof MoodList;
+  image: ImageSourcePropType;
 }

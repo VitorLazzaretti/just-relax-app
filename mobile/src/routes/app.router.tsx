@@ -3,6 +3,8 @@ import React from "react";
 import Home from "../pages/Home/Home";
 import SelectSound from "../pages/SelectSound/SelectSound";
 import PlaySound from "../pages/PlaySound/PlaySound";
+import GratitudeCalendar from "../pages/GratitudeCalendar/GratitudeCalendar";
+import JournalDocument from "../pages/JournalDocument/JournalDocument";
 
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -25,7 +27,8 @@ const AppRoutes: React.FC = () => {
         headerRight: () => <HeaderRight />,
         headerLeft: () => <HeaderLeft />,
         headerStyle: {
-          backgroundColor: theme.colors.background
+          backgroundColor: theme.colors.background,
+          height: 108
         },
         headerTitleAlign: 'center',
         headerShadowVisible: false,
@@ -35,6 +38,8 @@ const AppRoutes: React.FC = () => {
       <AppStack.Screen name="Home" component={Home} />
       <AppStack.Screen name="SelectSound" component={SelectSound} />
       <AppStack.Screen name="PlaySound" component={PlaySound} />
+      <AppStack.Screen name="GratitudeCalendar" component={GratitudeCalendar} />
+      <AppStack.Screen name="JournalDocument" component={JournalDocument} />
     </AppStack.Navigator>
   )
 };

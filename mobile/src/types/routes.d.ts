@@ -7,9 +7,12 @@ type DefaultParams = {
 export type AppRootParamList = {
   SignIn?: DefaultParams;
   SignUp?: DefaultParams;
-  Home: DefaultParams & { postId: string };
+  Home?: DefaultParams;
+  Profile?: DefaultParams;
   SelectSound?: DefaultParams;
   PlaySound: DefaultParams & { meditationId: string };
+  GratitudeCalendar?: DefaultParams;
+  JournalDocument: DefaultParams & { date: string };
 };
 
 // This registers which makes navigation fully type-safe.

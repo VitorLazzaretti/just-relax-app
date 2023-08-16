@@ -1,16 +1,21 @@
 import React from "react";
-import { useAuth } from "../../contexts/auth";
-import { Container, Description, Title } from "./styles";
 import { View } from "react-native";
+
+import {
+  Container,
+  Description,
+  Title
+} from "./styles";
 
 import MoodSelector from "../../components/MoodSelector/MoodSelector";
 import CardArea from "../../components/CardArea/CardArea";
+import { useTheme } from "../../contexts/theme";
 
 export default function Home() {
-  const { signOut } = useAuth();
+  const { toggleTheme } = useTheme();
 
-  const handleSignOut = async () => {
-    await signOut();
+  const handleSignOut = () => {
+    toggleTheme();
   }
 
   return (
@@ -18,7 +23,7 @@ export default function Home() {
       <Title onPress={handleSignOut}> Welcome back, Anime! </Title>
       <Description> How are you feeling today? </Description>
 
-      <View>
+      <View style={{ marginVertical: 8 }}>
         <MoodSelector />
       </View>
 
