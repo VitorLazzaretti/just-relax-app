@@ -1,28 +1,25 @@
 import { Dimensions } from "react-native";
 import { css, styled } from "styled-components/native";
 
-const { width, height } = Dimensions.get('screen');
+const { width } = Dimensions.get('screen');
 
 export const Container = styled.View`
   ${({ theme }) => css`
     background-color: ${theme.colors.black + "88"};
   `}
-  height: ${height}px;
+  height: 100%;
   width: ${width}px;
   position: absolute;
-  z-index: 999;
+  z-index: 50;
   justify-content: center;
   align-items: flex-start;
-  z-index: 9999;
-  position: absolute;
+  bottom: 0;
 `;
 
 export const SideMenuContainer = styled.Pressable`
   flex: 5;
   background-color: ${({ theme }) => theme.colors.background};
   padding: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
 `;
 
 export const CloseArea = styled.Pressable`

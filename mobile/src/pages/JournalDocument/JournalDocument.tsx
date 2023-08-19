@@ -20,6 +20,7 @@ import {
 import Logo from '../../components/Logo/Logo';
 import { AppRootParamList } from '../../types/routes';
 import { useTheme } from '../../contexts/theme';
+import MainLayout from '../../layout/MainLayout';
 
 type Props = StackScreenProps<AppRootParamList, "JournalDocument">;
 
@@ -37,30 +38,32 @@ const JournalDocument: React.FC<Props> = ({ navigation, route }) => {
   }
 
   return (
-    <Container>
-      <Title> How was your Mood today? </Title>
-      <View>
-        <MoodSelector />
-      </View>
-      <Title> What are you Grateful for today? </Title>
-      <Subtitle> {route.params.date} </Subtitle>
-      <DocumentContainer>
-        <DocumentInput
-          placeholder="I am grateful for..."
-          value={text}
-          onChangeText={setText}
-        />
-        <EffectBackground>
-          <Logo size={128} color={theme.colors.background}/>
-        </EffectBackground>
-      </DocumentContainer>
-      <Button onPress={saveDocument} activeOpacity={0.4}>
+    <MainLayout>
+
+      <Container>
+        <Title> How was your Mood today? </Title>
+        <View>
+          <MoodSelector />
+        </View>
+        <Title> What are you Grateful for today? </Title>
+        <Subtitle> {route.params.date} </Subtitle>
+        <DocumentContainer>
+          <DocumentInput
+            placeholder="I am grateful for..."
+            value={text}
+            onChangeText={setText}
+          />
+          <EffectBackground>
+            <Logo size={128} color={theme.colors.background} />
+          </EffectBackground>
+        </DocumentContainer>
+        <Button onPress={saveDocument} activeOpacity={0.4}>
           <ButtonText>
             {"Save Document - " + route.params.date}
           </ButtonText>
         </Button>
-    </Container>
-
+      </Container>
+    </MainLayout>
   );
 };
 

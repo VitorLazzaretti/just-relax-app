@@ -5,6 +5,8 @@ export const Container = styled.Pressable`
   height: 100%;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
+  z-index: 99;
 `;
 
 export const UserImage = styled.Image`

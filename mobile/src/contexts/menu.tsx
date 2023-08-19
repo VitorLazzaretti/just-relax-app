@@ -1,7 +1,8 @@
-import React, { useState, useContext, createContext, useEffect } from "react";
-
-import { BackHandler } from "react-native";
-
+import {
+  useState,
+  useContext,
+  createContext
+} from "react";
 
 type Props = {
   children: React.ReactNode;
@@ -22,21 +23,6 @@ export const useMenuNavigation = () => {
 
 export const MenuProvider = ({ children }: Props) => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
-
-  useEffect(() => {
-    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
-    return () => {
-      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
-    };
-  }, []);
-
-  function handleBackButtonClick() {
-    if (isSideMenuOpen) {
-      setIsSideMenuOpen(false);
-      return true;
-    }
-    return true;
-  }
 
   const toggleMenu = () => {
     setIsSideMenuOpen(() => !isSideMenuOpen);

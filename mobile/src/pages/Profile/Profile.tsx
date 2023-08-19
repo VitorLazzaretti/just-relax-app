@@ -20,6 +20,7 @@ import {
 } from "react-native";
 // import { VictoryBar, VictoryChart, VictoryGroup, VictoryTheme } from "victory-native";
 import { useTheme } from '../../contexts/theme';
+import MainLayout from '../../layout/MainLayout';
 
 type Data = {
   kind: "Meditation" | "Mood";
@@ -49,27 +50,28 @@ const Profile = () => {
   const { theme } = useTheme();
 
   return (
-    <Container>
-      <ProfileContainer>
-        <ProfileImage source={require("../../assets/profile-placeholder.png")} />
-        <ProfileName> Vitor Lazzaretti </ProfileName>
-        <ProfileLocation> Jaraguá do Sul, Brazil </ProfileLocation>
-      </ProfileContainer>
+    <MainLayout>
+      <Container>
+        <ProfileContainer>
+          <ProfileImage source={require("../../assets/profile-placeholder.png")} />
+          <ProfileName> Vitor Lazzaretti </ProfileName>
+          <ProfileLocation> Jaraguá do Sul, Brazil </ProfileLocation>
+        </ProfileContainer>
 
-      <SelectableContainer>
-        <SelectableMenu>
-          <SelectableMenuOption onPress={() => setMenu("stats")}>
-            <SelectableMenuText selected={menu === 'stats'}> STATS </SelectableMenuText>
-            <SelectableMenuLine selected={menu === 'stats'} />
-          </SelectableMenuOption>
-          <SelectableMenuOption onPress={() => setMenu("achievements")}>
-            <SelectableMenuText selected={menu === 'achievements'}> ACHIEVEMENTS </SelectableMenuText>
-            <SelectableMenuLine selected={menu === 'achievements'} />
-          </SelectableMenuOption>
-        </SelectableMenu>
-      </SelectableContainer>
+        <SelectableContainer>
+          <SelectableMenu>
+            <SelectableMenuOption onPress={() => setMenu("stats")}>
+              <SelectableMenuText selected={menu === 'stats'}> STATS </SelectableMenuText>
+              <SelectableMenuLine selected={menu === 'stats'} />
+            </SelectableMenuOption>
+            <SelectableMenuOption onPress={() => setMenu("achievements")}>
+              <SelectableMenuText selected={menu === 'achievements'}> ACHIEVEMENTS </SelectableMenuText>
+              <SelectableMenuLine selected={menu === 'achievements'} />
+            </SelectableMenuOption>
+          </SelectableMenu>
+        </SelectableContainer>
 
-      {/* {menu === "stats" && (
+        {/* {menu === "stats" && (
         <View style={styles.container}>
           <VictoryChart
             width={380}
@@ -100,29 +102,30 @@ const Profile = () => {
         </View>
       )} */}
 
-      {menu === "stats" && (
-        <AchievementsContainer>
-          <Image source={require("../../assets/medal.png")} style={{
-            width: 150,
-            height: 208,
-            marginBottom: 20
-          }} />
-          <ProfileLocation> Coming Soon ... </ProfileLocation>
-        </AchievementsContainer>
-      )}
+        {menu === "stats" && (
+          <AchievementsContainer>
+            <Image source={require("../../assets/medal.png")} style={{
+              width: 150,
+              height: 208,
+              marginBottom: 20
+            }} />
+            <ProfileLocation> Coming Soon ... </ProfileLocation>
+          </AchievementsContainer>
+        )}
 
 
-      {menu === 'achievements' && (
-        <AchievementsContainer>
-          <Image source={require("../../assets/medal.png")} style={{
-            width: 150,
-            height: 208,
-            marginBottom: 20
-          }} />
-          <ProfileLocation> Coming Soon ... </ProfileLocation>
-        </AchievementsContainer>
-      )}
-    </Container>
+        {menu === 'achievements' && (
+          <AchievementsContainer>
+            <Image source={require("../../assets/medal.png")} style={{
+              width: 150,
+              height: 208,
+              marginBottom: 20
+            }} />
+            <ProfileLocation> Coming Soon ... </ProfileLocation>
+          </AchievementsContainer>
+        )}
+      </Container>
+    </MainLayout>
   )
 }
 

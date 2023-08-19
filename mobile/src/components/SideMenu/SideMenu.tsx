@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, Pressable } from 'react-native';
+import { SafeAreaView, Pressable, View } from 'react-native';
 import { CloseArea, Container, SideMenuContainer, Description } from './styles';
 import Animated, { SlideInLeft, SlideOutLeft } from 'react-native-reanimated';
 import { useMenuNavigation } from '../../contexts/menu';
@@ -12,6 +12,7 @@ const SideMenu = () => {
   const { closeMenu } = useMenuNavigation();
   const { signOut } = useAuth()
   const { toggleTheme, theme } = useTheme();
+  const { isSideMenuOpen } = useMenuNavigation();
   const navigate = useNavigation();
 
   const goTo = (route: any) => {
@@ -46,6 +47,10 @@ const SideMenu = () => {
     }
   ]
 
+  if (!isSideMenuOpen) {
+    return <View />;
+  }
+
   return (
     <Container>
       <Animated.View
@@ -60,15 +65,17 @@ const SideMenu = () => {
         <SideMenuContainer>
           <SafeAreaView style={{ gap: 24, flex: 1 }}>
             {routes.map((route, index) => (
-              <Pressable style={{
-                marginTop: index ? 0 : 20,
-              }} key={index} onPress={route.action}>
+              <Pressable
+                style={{ marginTop: index == 0 ? 12 : 0 }}
+                key={index}
+                onPress={route.action}
+              >
                 <Description>{route.title}</Description>
               </Pressable>
             ))}
           </SafeAreaView>
           <SafeAreaView style={{ gap: 24, flex: 1, justifyContent: "flex-end" }}>
-            <Pressable onPress={toggleTheme} style={{ flexDirection: 'row', gap: 8, marginBottom: 0 }}>
+            <Pressable onPress={toggleTheme} style={{ flexDirection: 'row', gap: 8, marginBottom: 24 }}>
               <Description> Toggle Theme </Description>
               {theme.title === "light" && (
                 <IconMI name='wb-sunny' size={24} color='black' />

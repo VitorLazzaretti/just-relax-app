@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
 import React, { useState } from 'react'
-import { View } from 'react-native';
 import { CalendarList, CalendarProps } from 'react-native-calendars';
 import { useTheme } from '../../contexts/theme';
 import { useNavigation } from '@react-navigation/native';
+import MainLayout from '../../layout/MainLayout';
 
 enum Dots {
   mood = 'mood',
@@ -68,7 +68,7 @@ const GratitudeCalendar = () => {
   };
 
   return (
-    <View>
+    <MainLayout>
       <CalendarList
         futureScrollRange={24}
         showScrollIndicator={true}
@@ -103,7 +103,7 @@ const GratitudeCalendar = () => {
         markingType='multi-dot'
         markedDates={markedDates}
       />
-    </View>
+    </MainLayout>
   );
 }
 
