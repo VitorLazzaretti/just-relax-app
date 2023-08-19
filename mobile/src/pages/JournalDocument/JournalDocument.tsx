@@ -33,8 +33,6 @@ const JournalDocument: React.FC<Props> = ({ navigation, route }) => {
   };
 
   const saveDocument = () => {
-    console.log('save document');
-    console.log(text);
     navigation.goBack();
   }
 

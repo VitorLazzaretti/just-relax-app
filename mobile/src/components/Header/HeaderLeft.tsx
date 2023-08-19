@@ -14,8 +14,12 @@ const HeaderLeft: React.FC = () => {
       onPress={() => openMenu()}
       style={{ paddingLeft: 20, paddingBottom: 12, paddingRight: 30 }}
     >
-      <Pressable>
-        <IconMI onPress={() => openMenu()} name="menu" size={30} color={theme.title === "light" ? theme.colors.black : theme.colors.white} />
+      <Pressable onPress={() => openMenu()}>
+        <IconMI
+          name="menu"
+          size={30}
+          color={theme.colors.text}
+        />
       </Pressable>
     </Container>
   )

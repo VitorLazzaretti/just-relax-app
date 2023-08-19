@@ -9,7 +9,6 @@ type IconMIProps = {
   size: number;
   color?: string;
   style?: StyleProp<ViewStyle>;
-  onPress?: () => void;
 }
 
 const IconMI: React.FC<IconMIProps> = ({
@@ -17,12 +16,11 @@ const IconMI: React.FC<IconMIProps> = ({
   name,
   size,
   style,
-  onPress
 }) => {
   const { theme } = useTheme();
 
   return (
-    <IconContainer onPress={onPress} style={style}>
+    <IconContainer style={style}>
       <MaterialIcons name={name} size={size} color={color || theme.colors.icon} />
     </IconContainer>
   )

@@ -29,7 +29,6 @@ const PlaySound: React.FC<Props> = ({ navigation, route }) => {
   const { theme } = useTheme();
 
   useEffect(() => {
-    console.log(currentMeditation)
   }, [currentMeditation]);
 
   if (!currentMeditation) {
@@ -48,7 +47,6 @@ const PlaySound: React.FC<Props> = ({ navigation, route }) => {
 
   const previousMeditation = () => {
     const previousMeditation = meditationSounds.find(meditation => meditation.id === currentMeditation?.id - 1);
-    console.log(previousMeditation);
     if (previousMeditation) {
       setCurrentMeditation({...previousMeditation});
     } else {

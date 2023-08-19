@@ -1,11 +1,9 @@
 import React from 'react'
 import Card from '../Card/Card';
 import { Container } from './styles';
-import { useTheme } from '../../contexts/theme';
 import { useNavigation } from '@react-navigation/native'
 
 const CardArea = () => {
-  const { toggleTheme } = useTheme();
   const navigation = useNavigation();
 
   const cards = [
@@ -28,7 +26,7 @@ const CardArea = () => {
       description: 'Discover Patterns, Understand Your Progress',
       image: require('../../assets/home/card-insights.png'),
       buttonText: 'analyze now',
-      onPress: () => { toggleTheme() }
+      onPress: () => { navigation.navigate("PersonalInsights") }
     },
   ]
 

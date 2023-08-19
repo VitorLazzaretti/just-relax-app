@@ -5,10 +5,13 @@ import Animated, { SlideInLeft, SlideOutLeft } from 'react-native-reanimated';
 import { useMenuNavigation } from '../../contexts/menu';
 import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../contexts/auth';
+import { useTheme } from '../../contexts/theme';
+import IconMI from '../Icon/IconMI';
 
 const SideMenu = () => {
   const { closeMenu } = useMenuNavigation();
   const { signOut } = useAuth()
+  const { toggleTheme, theme } = useTheme();
   const navigate = useNavigation();
 
   const goTo = (route: any) => {
@@ -22,6 +25,10 @@ const SideMenu = () => {
       action: () => goTo('Home')
     },
     {
+      title: 'Profile',
+      action: () => goTo('Profile')
+    },
+    {
       title: 'Meditation',
       action: () => goTo('SelectSound')
     },
@@ -30,8 +37,8 @@ const SideMenu = () => {
       action: () => goTo('GratitudeCalendar')
     },
     {
-      title: 'Profile',
-      action: () => { closeMenu(); signOut(); }
+      title: 'Personal Insights',
+      action: () => goTo('PersonalInsights')
     },
     {
       title: 'Logout',
@@ -59,6 +66,18 @@ const SideMenu = () => {
                 <Description>{route.title}</Description>
               </Pressable>
             ))}
+          </SafeAreaView>
+          <SafeAreaView style={{ gap: 24, flex: 1, justifyContent: "flex-end" }}>
+            <Pressable onPress={toggleTheme} style={{ flexDirection: 'row', gap: 8, marginBottom: 0 }}>
+              <Description> Toggle Theme </Description>
+              {theme.title === "light" && (
+                <IconMI name='wb-sunny' size={24} color='black' />
+              )}
+
+              {theme.title === "dark" && (
+                <IconMI name='nightlight-round' size={20} color='white' />
+              )}
+            </Pressable>
           </SafeAreaView>
         </SideMenuContainer>
         <CloseArea onPress={() => closeMenu()} />

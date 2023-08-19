@@ -13,6 +13,7 @@ export type AppRootParamList = {
   PlaySound: DefaultParams & { meditationId: string };
   GratitudeCalendar?: DefaultParams;
   JournalDocument: DefaultParams & { date: string };
+  PersonalInsights?: DefaultParams;
 };
 
 // This registers which makes navigation fully type-safe.

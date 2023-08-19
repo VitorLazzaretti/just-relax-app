@@ -18,7 +18,7 @@ export const Container = styled.View`
 `;
 
 export const SideMenuContainer = styled.Pressable`
-  flex: 4;
+  flex: 5;
   background-color: ${({ theme }) => theme.colors.background};
   padding: 20px;
   border-top-right-radius: 20px;

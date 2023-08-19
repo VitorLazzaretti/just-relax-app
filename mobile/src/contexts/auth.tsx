@@ -28,14 +28,18 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   useEffect(() => {
     async function loadStorageData() {
-      setLoading(true);
-      const storedUser = await AsyncStorage.getItem("@user");
-      const storedToken = await AsyncStorage.getItem("@token");
+      try {
+        setLoading(true);
+        const storedUser = await AsyncStorage.getItem("@user");
+        const storedToken = await AsyncStorage.getItem("@token");
 
-      if (storedUser && storedToken) {
-        setUser(JSON.parse(storedUser) as User);
+        if (storedUser && storedToken) {
+          setUser(JSON.parse(storedUser) as User);
+        }
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
       }
-      setLoading(false);
     }
 
     loadStorageData();
@@ -45,7 +49,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const response = await auth.signIn();
 
     setUser(response.user);
-    
+
     await AsyncStorage.setItem("@user", JSON.stringify(response.user));
     await AsyncStorage.setItem("@token", response.token);
   }

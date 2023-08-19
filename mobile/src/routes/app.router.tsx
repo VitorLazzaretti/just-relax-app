@@ -5,6 +5,8 @@ import SelectSound from "../pages/SelectSound/SelectSound";
 import PlaySound from "../pages/PlaySound/PlaySound";
 import GratitudeCalendar from "../pages/GratitudeCalendar/GratitudeCalendar";
 import JournalDocument from "../pages/JournalDocument/JournalDocument";
+import Profile from "../pages/Profile/Profile";
+import PersonalInsights from "../pages/PersonalInsights/PersonalInsights";
 
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -40,6 +42,8 @@ const AppRoutes: React.FC = () => {
       <AppStack.Screen name="PlaySound" component={PlaySound} />
       <AppStack.Screen name="GratitudeCalendar" component={GratitudeCalendar} />
       <AppStack.Screen name="JournalDocument" component={JournalDocument} />
+      <AppStack.Screen name="Profile" component={Profile} />
+      <AppStack.Screen name="PersonalInsights" component={PersonalInsights} />
     </AppStack.Navigator>
   )
 };
