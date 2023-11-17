@@ -6,6 +6,7 @@ import { Alegreya_500Medium } from '@expo-google-fonts/alegreya';
 import { AlegreyaSans_400Regular, AlegreyaSans_500Medium } from '@expo-google-fonts/alegreya-sans';
 import { useFonts } from 'expo-font';
 import { StatusBar } from "expo-status-bar";
+import { useNavigation } from "@react-navigation/native";
 
 type Props = {
   children: React.ReactNode;
@@ -26,6 +27,7 @@ export const useTheme = () => {
 
 export const Theme: React.FC<Props> = ({ children }) => {
   const [theme, setTheme] = useState(themes.light);
+  const navigation = useNavigation();
 
   const [fontsLoaded] = useFonts({
     Alegreya_500Medium,
@@ -41,6 +43,7 @@ export const Theme: React.FC<Props> = ({ children }) => {
 
   const toggleTheme = () => {
     setTheme(theme.title === "light" ? themes.dark : themes.light);
+    navigation.navigate("Home");
   };
 
   return (
