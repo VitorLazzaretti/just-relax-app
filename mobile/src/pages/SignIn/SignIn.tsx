@@ -28,6 +28,7 @@ import { useTheme } from "../../contexts/theme";
 import { useNavigation } from "@react-navigation/native";
 
 import * as yup from "yup";
+import { Alert } from "react-native";
 
 type FormData = {
   email: string;
@@ -53,7 +54,11 @@ const SignIn: React.FC = () => {
   });
 
   async function handleUserLogin(data: FormData) {
-    await signIn();
+    try {
+      await signIn(data.email, data.password);
+    } catch (error) {
+      console.log("Sign In Error: ", error);
+    }
   }
 
   const handleNavigation = () => { navigation.navigate("SignUp") };

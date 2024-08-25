@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Container,
   Button,
@@ -18,7 +19,6 @@ import Logo from "../../components/Logo/Logo";
 import InitialBackground from "../../components/InitialBackground/InitialBackground";
 
 import { ControlledInput } from '../../components/ControlledInput/ControlledInput';
-
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Resolver, useForm } from 'react-hook-form';
@@ -35,13 +35,15 @@ type FormData = {
 }
 
 const schema = yup.object({
-  name: yup.string().min(2, "Name must contain at least 2 characters").max(32, "Name must contain less than 32 characters").required("Name is required"),
+  name: yup.string()
+    .min(2, "Name must contain at least 2 characters")
+    .max(32, "Name must contain less than 32 characters").required("Name is required"),
   email: yup.string().email("Invalid Email").required("Email is required"),
   password: yup.string().min(6, "Password must contain at least 6 characters").required("Password is required"),
 });
 
 const SignUp: React.FC = () => {
-  const { signIn } = useAuth();
+  const { signUp } = useAuth();
   const { toggleTheme } = useTheme();
   const navigation = useNavigation();
 
@@ -54,9 +56,11 @@ const SignUp: React.FC = () => {
   });
 
   async function handleUserSignUp(data: FormData) {
-    await signIn();
-
-    // TODO - Create a function to handle user sign up
+    try {
+      await signUp(data.email, data.password, data.name);
+    } catch (error) {
+      console.log("Sign Up Error: ", error);
+    }
   }
 
   const handleNavigation = () => { navigation.navigate("SignIn") };
@@ -105,7 +109,7 @@ const SignUp: React.FC = () => {
         <Button
           onPress={handleSubmit(handleUserSignUp)}
         >
-          <ButtonText> SIGNUP </ButtonText>
+          <ButtonText> SIGN UP </ButtonText>
         </Button>
 
         <ButtonDescription onPress={handleNavigation} style={{ marginBottom: 40 }}>

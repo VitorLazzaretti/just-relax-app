@@ -1,6 +1,7 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as auth from "../services/api.auth";
+import { User } from "firebase/auth";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -9,7 +10,8 @@ interface AuthProviderProps {
 interface AuthContextData {
   signed: boolean;
   user: User | null;
-  signIn(): Promise<void>;
+  signIn(email: string, password: string): Promise<void>;
+  signUp(email: string, password: string, name: string): Promise<void>;
   signOut(): Promise<void>;
   loading: boolean;
 }
@@ -18,7 +20,6 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const useAuth = () => {
   const context = React.useContext(AuthContext);
-
   return context;
 }
 
@@ -45,11 +46,21 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     loadStorageData();
   }, []);
 
-  async function signIn() {
-    const response = await auth.signIn();
+  async function signIn(email: string, password: string) {
+    const response = await auth.signIn(email, password);
 
     setUser(response.user);
 
+    await AsyncStorage.setItem("@user", JSON.stringify(response.user));
+    await AsyncStorage.setItem("@token", response.token);
+  }
+
+  async function signUp(email: string, password: string, name: string) {
+    const response = await auth.signUp(email, password);
+
+    setUser(response.user);
+
+    await AsyncStorage.setItem("@name", name);
     await AsyncStorage.setItem("@user", JSON.stringify(response.user));
     await AsyncStorage.setItem("@token", response.token);
   }
@@ -58,6 +69,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     await AsyncStorage.removeItem("@user");
     await AsyncStorage.removeItem("@token");
 
+    await auth.signOut();
     setUser(null);
   }
 
@@ -68,6 +80,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         loading: loading,
         user: user,
         signIn: signIn,
+        signUp: signUp,
         signOut: signOut
       }}
     >

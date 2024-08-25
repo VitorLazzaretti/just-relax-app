@@ -1,21 +1,42 @@
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, User } from "firebase/auth";
+import { auth } from "../config/firebase";
+
 interface Response {
   token: string;
   user: User;
+  refreshToken: string;
 }
 
-export function signIn(): Promise<Response> {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve({
-      token: 'akjdoauhfaojda',
-      user: {
-        name: 'João',
-        email: 'joao@gmail.com',
-        avatar: 'https://avatars.githubusercontent.com/u/2254731?v=4',
-        created_at: new Date(),
-        updated_at: new Date(),
-        id: '1',
-        password: '123456',
-      }
-    }), 100);
-  });
+export async function signIn(email: string, password: string): Promise<Response> {
+  try {
+    const { user } = await signInWithEmailAndPassword(auth, email, password);
+    const token = await user.getIdToken();
+
+    return {
+      token: token,
+      user: user,
+      refreshToken: user.refreshToken
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+export async function signOut() {
+  await auth.signOut();
+}
+
+export async function signUp(email: string, password: string): Promise<Response> {
+  try {
+    const { user } = await createUserWithEmailAndPassword(auth, email, password);
+    const token = await user.getIdToken();
+
+    return {
+      token: token,
+      user: user,
+      refreshToken: user.refreshToken
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
 }

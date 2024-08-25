@@ -22,7 +22,7 @@ const HeaderRight: React.FC = () => {
           color={theme.colors.text}
           size={30}
         /> :
-        <UserImage source={require("../../assets/profile-placeholder.png")} />
+        <UserImage source={require("../../assets/profile-placeholder.jpg")} />
       }
 
     </Container>

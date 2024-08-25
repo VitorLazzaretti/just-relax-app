@@ -5,6 +5,7 @@ export const meditationSounds: MeditationSound[] = [
     listening: '59899 Listening',
     duration: 15,
     image: require('../assets/meditation/clock.jpg'),
+    sound: require('../assets/sounds/clock.mp3'),
     author: 'Silent Guy',
   },
   {
@@ -12,6 +13,7 @@ export const meditationSounds: MeditationSound[] = [
     title: 'Painting Forest',
     listening: '87342 Listening',
     image: require('../assets/meditation/amazon.jpg'),
+    sound: require('../assets/sounds/amazon.mp3'),
     duration: 104,
     author: 'Lily Rose',
   },
@@ -20,6 +22,7 @@ export const meditationSounds: MeditationSound[] = [
     title: 'Lovely Desert',
     listening: '69128 Listening',
     image: require('../assets/meditation/desert.jpg'),
+    sound: require('../assets/sounds/art_landscape.mp3'),
     duration: 35,
     author: 'John Paul',
   },
@@ -28,6 +31,7 @@ export const meditationSounds: MeditationSound[] = [
     title: 'Grassland Wind',
     listening: '41903 Listening',
     image: require('../assets/meditation/grassland.jpg'),
+    sound: require('../assets/sounds/amazon.mp3'),
     duration: 47,
     author: 'Emma Jane'
   },
@@ -37,13 +41,15 @@ export const meditationSounds: MeditationSound[] = [
     listening: '75189 Listening',
     image: require('../assets/meditation/hillside.jpg'),
     duration: 52,
-    author: "Michaela Smith"
+    author: "Michaela Smith",
+    sound: require('../assets/sounds/art_landscape.mp3'),
   },
   {
     id: 6,
     title: 'Snowy Mountain',
     listening: '62457 Listening',
     image: require('../assets/meditation/snowy_mountain.jpg'),
+    sound: require('../assets/sounds/clock.mp3'),
     duration: 63,
     author: "Catherine Jones"
   },
@@ -52,6 +58,7 @@ export const meditationSounds: MeditationSound[] = [
     title: 'Calm Tundra',
     listening: '18347 Listening',
     image: require('../assets/meditation/tundra.jpg'),
+    sound: require('../assets/sounds/amazon.mp3'),
     duration: 28,
   },
   {
@@ -59,6 +66,7 @@ export const meditationSounds: MeditationSound[] = [
     title: 'Colorful Landscape',
     listening: '93805 Listening',
     image: require('../assets/meditation/art_landscape.jpg'),
+    sound: require('../assets/sounds/art_landscape.mp3'),
     duration: 20,
     author: "Lian Scott"
   },

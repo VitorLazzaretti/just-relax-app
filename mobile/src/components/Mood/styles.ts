@@ -6,7 +6,7 @@ export const Container = styled.View`
   gap: 2px;
 `;
 
-export const MoodImageContainer = styled.View`
+export const MoodImageContainer = styled.Pressable`
   height: 64px;
   width: 64px;
   border-radius: 20px;

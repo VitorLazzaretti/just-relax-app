@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import {
   Container,
   ProfileContainer,
@@ -14,48 +15,32 @@ import {
 } from './styles';
 
 import {
-  StyleSheet,
-  // View,
   Image
 } from "react-native";
-// import { VictoryBar, VictoryChart, VictoryGroup, VictoryTheme } from "victory-native";
-import { useTheme } from '../../contexts/theme';
+
 import MainLayout from '../../layout/MainLayout';
-
-type Data = {
-  kind: "Meditation" | "Mood";
-  day: string
-  value: number;
-}
-
-const data: Data[] = [
-  { day: "Mon", kind: 'Meditation', value: 200 },
-  { day: "Mon", kind: 'Mood', value: 100 },
-  { day: "Tue", kind: 'Meditation', value: 350 },
-  { day: "Tue", kind: 'Mood', value: 250 },
-  { day: "Wed", kind: 'Meditation', value: 300 },
-  { day: "Wed", kind: 'Mood', value: 500 },
-  { day: "Thu", kind: 'Meditation', value: 700 },
-  { day: "Thu", kind: 'Mood', value: 400 },
-  { day: "Fri", kind: 'Meditation', value: 550 },
-  { day: "Fri", kind: 'Mood', value: 300 },
-  { day: "Sat", kind: 'Meditation', value: 650 },
-  { day: "Sat", kind: 'Mood', value: 550 },
-  { day: "Sun", kind: 'Meditation', value: 800 },
-  { day: "Sun", kind: 'Mood', value: 450 },
-];
+import { useAuth } from '../../contexts/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Profile = () => {
   const [menu, setMenu] = useState<"stats" | "achievements">("stats");
-  const { theme } = useTheme();
+  const [username, setUsername] = useState<string | null>(null);
+
+  const { user } = useAuth();
+
+  useEffect(() => {
+    AsyncStorage.getItem('@name').then((name) => {
+      setUsername(name);
+    });
+  }, []);
 
   return (
     <MainLayout>
       <Container>
         <ProfileContainer>
-          <ProfileImage source={require("../../assets/profile-placeholder.png")} />
-          <ProfileName> Vitor Lazzaretti </ProfileName>
-          <ProfileLocation> Jaraguá do Sul, Brazil </ProfileLocation>
+          <ProfileImage source={require("../../assets/profile-placeholder.jpg")} />
+          <ProfileName> {username} </ProfileName>
+          <ProfileLocation> {user.email} </ProfileLocation>
         </ProfileContainer>
 
         <SelectableContainer>
@@ -70,37 +55,6 @@ const Profile = () => {
             </SelectableMenuOption>
           </SelectableMenu>
         </SelectableContainer>
-
-        {/* {menu === "stats" && (
-        <View style={styles.container}>
-          <VictoryChart
-            width={380}
-            height={235}
-          >
-            <VictoryGroup
-              offset={20}
-            >
-              <VictoryBar
-                data={data.filter(x => x.kind === "Meditation")}
-                x="day"
-                y="value"
-                alignment="start"
-                cornerRadius={{ topLeft: 6, topRight: 6 }}
-                style={{ data: { fill: theme.colors.primary } }}
-              />
-              <VictoryBar
-                data={data.filter(x => x.kind === "Mood")}
-                x="day"
-                y="value"
-                alignment="start"
-                cornerRadius={{ topLeft: 6, topRight: 6 }}
-                style={{ data: { fill: theme.colors.tertiary } }}
-
-              />
-            </VictoryGroup>
-          </VictoryChart>
-        </View>
-      )} */}
 
         {menu === "stats" && (
           <AchievementsContainer>
@@ -128,12 +82,5 @@ const Profile = () => {
     </MainLayout>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignItems: "center",
-  }
-});
 
 export default Profile;

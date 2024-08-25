@@ -4,6 +4,7 @@ import Router from './src/routes/router';
 import { AuthProvider } from './src/contexts/auth';
 import { Theme as ThemeProvider } from './src/contexts/theme';
 import { MenuProvider } from './src/contexts/menu';
+import { DotsProvider } from './src/contexts/dots';
 
 const App: React.FC = () => {
   return (
@@ -11,7 +12,9 @@ const App: React.FC = () => {
       <AuthProvider>
         <ThemeProvider>
           <MenuProvider>
-            <Router />
+            <DotsProvider>
+              <Router />
+            </DotsProvider>
           </MenuProvider>
         </ThemeProvider>
       </AuthProvider>

@@ -11,7 +11,7 @@ export type AppRootParamList = {
   Profile?: DefaultParams;
   SelectSound?: DefaultParams;
   PlaySound: DefaultParams & { meditationId: string };
-  GratitudeCalendar?: DefaultParams;
+  GratitudeCalendar?: DefaultParams & { random?: number };
   JournalDocument: DefaultParams & { date: string };
   PersonalInsights?: DefaultParams;
 };

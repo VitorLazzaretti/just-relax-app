@@ -14,6 +14,7 @@ type MeditationSound = {
   listening: string;
   image: ImageSourcePropType;
   duration: number;
+  sound: AVPlaybackSource;
   author?: string;
 }
 
