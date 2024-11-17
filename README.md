@@ -19,7 +19,6 @@ Just Relax App is a meditation application designed to help users find peace and
 * [Firebase](https://firebase.google.com/) - Backend services like real-time database and authentication
 * [React Hook Form](https://react-hook-form.com/) - Forms management
 * [Yup](https://github.com/jquense/yup) - Validation for forms
-* [Victory Native](https://formidable.com/open-source/victory/) - Data visualization
 
 ## How to Execute the Project
 
